@@ -9,7 +9,7 @@ using StationeersMods.Interface;
 
 namespace IC10Sync
 {
-    [StationeersMod("IC10Sync", "IC10Sync", "0.2.5499.24517.3")]
+    [StationeersMod("IC10Sync", "IC10Sync", "0.2.5499.24517.4")]
     public class IC10Sync : ModBehaviour
     {
         // Config entry for chip data path
@@ -133,7 +133,7 @@ namespace IC10Sync
             if (!System.IO.File.Exists(filePath) || !codeHashes.ContainsKey(key) || codeHashes[key] != hashBefore) // file doesn't exist or code has changed
             {
                 UnityEngine.Debug.LogWarning($"{key} source code exported. Before: {codeHashes.GetValueOrDefault(key)}, After: {hashBefore}");
-                ConsoleWindow.Print($"{key} source code exported. Before: {codeHashes.GetValueOrDefault(key)}, After: {hashBefore}", ConsoleColor.Blue);
+                // ConsoleWindow.Print($"{key} source code exported. Before: {codeHashes.GetValueOrDefault(key)}, After: {hashBefore}", ConsoleColor.Blue);
                 System.IO.File.WriteAllText(filePath, sourceCodeText);
             }
             codeHashes[key] = hashBefore; // store current hash
@@ -145,7 +145,7 @@ namespace IC10Sync
             if (onDiskHash != hashBefore)
             {
                 UnityEngine.Debug.LogWarning($"{key} source code loaded. Before: {hashBefore}, After: {onDiskHash}");
-                ConsoleWindow.Print($"{key} source code loaded. Before: {hashBefore}, After: {onDiskHash}", ConsoleColor.Green);
+                // ConsoleWindow.Print($"{key} source code loaded. Before: {hashBefore}, After: {onDiskHash}", ConsoleColor.Green);
                 // If the hash doesn't match, write the new source code
                 sourceCode.SetSourceCode(onDiskSourceCode);
                 sourceCode.SendUpdate();
